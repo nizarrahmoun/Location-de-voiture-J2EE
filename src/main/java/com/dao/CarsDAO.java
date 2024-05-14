@@ -11,7 +11,7 @@ import com.entity.Cars;
 
 public class CarsDAO {
 	
-	private Connection conn;
+	private static Connection conn;
 
 	public CarsDAO(Connection conn) {
 		super();
@@ -38,8 +38,30 @@ public class CarsDAO {
 		}
 		return success;
 	}
+	
+	public Cars getCarByRegNum(String num_reg) {
+        Cars car = null;
+        try {
+            String sql = "SELECT * FROM carstbl WHERE num_reg = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, num_reg);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                car = new Cars();
+                car.setNum_reg(rs.getString("num_reg"));
+                car.setBrand(rs.getString("brand"));
+                car.setModel(rs.getString("model"));
+                car.setStatus(rs.getString("status"));
+                car.setPrice(rs.getDouble("price"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return car;
+    }
 
-	public List<Cars> getCars() {
+
+	public static List<Cars> getCars() {
 		List<Cars> carsList = new ArrayList<>();
 		try {
 			String sql = "SELECT * FROM carstbl";

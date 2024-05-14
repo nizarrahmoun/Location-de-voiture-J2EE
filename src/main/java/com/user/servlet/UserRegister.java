@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/user_register")
+@WebServlet("/user_registerr")
 
 public class UserRegister extends HttpServlet {
 	@Override
