@@ -2,8 +2,8 @@
 <%@page isELIgnored="false"%>
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
     <div class="container-fluid">
-    <a class="navbar-brand" href="index.jsp">
-    <i class="fas fa-car"></i> Car Home</a>
+    <a class="navbar-brand">
+    <i class="fas fa-car"></i> Location voiture</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
     data-bs-target="#navbarSupportedContent"
     aria-controls="navbarSuportedContent" aria-expanded="false"
@@ -12,10 +12,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
      <ul class="navbar-nav me-auto mb-2 mn-lg-0">
-     <li class="nav-item"><a class="nav-link active" href="home.jsp"><i class="fas fa-home"></i>HOME</a></li>
-     <li class="nav-item"><a class="nav-link active" href="doctor.jsp">CARS</a></li>
-     <li class="nav-item"><a class="nav-link active" href="patient.jsp">BOOKING</a></li>
-     <li class="nav-item"><a class="nav-link active" href="patient.jsp">RETURNS</a></li>
+     <li class="nav-item"><a class="nav-link active" href="/Car_rental/admin/index.jsp"><i class="fas fa-home"></i>HOME</a></li>
+     <li class="nav-item"><a class="nav-link active" href="/Car_rental/Cars/cars.jsp">Voitures</a></li>
+     <li class="nav-item"><a class="nav-link active" href="/Car_rental/Clients/clients.jsp">Cliens</a></li>
+     <li class="nav-item"><a class="nav-link active" href="patient.jsp">Location</a></li>
+     <li class="nav-item"><a class="nav-link active" href="patient.jsp">Retours</a></li>
+     
     </ul>
     
     <form class="d-flex">

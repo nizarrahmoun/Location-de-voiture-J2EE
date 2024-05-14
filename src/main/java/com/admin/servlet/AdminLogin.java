@@ -17,12 +17,12 @@ public class AdminLogin extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String email = req.getParameter("email");
+			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 
 			HttpSession session = req.getSession();
 
-			if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
+			if ("admin".equals(username) && "1234".equals(password)) {
 				session.setAttribute("adminObj", new User());
 				resp.sendRedirect("admin/index.jsp");
 			} else {

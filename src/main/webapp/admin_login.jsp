@@ -32,8 +32,8 @@ box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
           </c:if>
           <form action="adminLogin" method="post">
             <div class="mb-3">
-              <label class="form-label">Email address</label>
-              <input required name="email" type="email" class="form-control">
+              <label class="form-label">Username</label>
+              <input required name="username" type="text" class="form-control">
             </div>
             <div class="mb-3">
               <label class="form-label">Password</label>
