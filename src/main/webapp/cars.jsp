@@ -16,69 +16,90 @@
 <body>
     <div class="container">
         <%@ include file="/admin/navbar.jsp"%>
-<c:if test="${empty adminObj }">
-<c:redirect url="../admin_login.jsp"></c:redirect>
-</c:if>
-    <div class="container">
-        <h1 class="mt-5">Car Management</h1>
+        <c:if test="${empty adminObj }">
+            <c:redirect url="../admin_login.jsp"></c:redirect>
+        </c:if>
+        <div class="container">
+            <h1 class="mt-5">Car Management</h1>
+            
+            <!-- Display existing cars -->
+            <h2 class="mt-5">Existing Cars:</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Reg_num</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                    CarsDAO carDAO = new CarsDAO(DBConnect.getConn());
+                    List<Cars> list = carDAO.getCars();
+                    for (Cars c : list) { %>
+                    <tr>
+                        <td><%= c.getNum_reg() %></td>
+                        <td><%= c.getBrand() %></td>
+                        <td><%= c.getModel() %></td>
+                        <td><%= c.getStatus() %></td>
+                        <td><%= c.getPrice() %></td>
+                        <td>
+                            <button class="btn btn-warning" onclick="populateForm('<%= c.getNum_reg() %>', '<%= c.getBrand() %>', '<%= c.getModel() %>', '<%= c.getStatus() %>', '<%= c.getPrice() %>')">Update</button>
+                            <form action="delete_car" method="post" style="display:inline;">
+                                <input type="hidden" name="num_reg" value="<%= c.getNum_reg() %>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            
+            <!-- Add a new car form -->
+            <h2 class="mt-5" id="form-title">Add New Car:</h2>
+            <form action="update_car" method="post" id="car-form">
+                <input type="hidden" id="is-update" name="isUpdate" value="false">
+                <div class="mb-3">
+                    <label for="num_reg" class="form-label">Registration Number:</label>
+                    <input type="text" class="form-control" name="num_reg" id="num_reg">
+                </div>
+                <div class="mb-3">
+                    <label for="brand" class="form-label">Brand:</label>
+                    <input type="text" class="form-control" name="brand" id="brand">
+                </div>
+                <div class="mb-3">
+                    <label for="model" class="form-label">Model:</label>
+                    <input type="text" class="form-control" name="model" id="model">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status:</label>
+                    <input type="text" class="form-control" name="status" id="status">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price:</label>
+                    <input type="text" class="form-control" name="price" id="price">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit-btn">Add Car</button>
+            </form>
+        </div>
         
-        <!-- Display existing cars -->
-        <h2 class="mt-5">Existing Cars:</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Reg_num</th>
-                    <th>Brand</th>
-                    <th>model</th>
-                    <th>Status</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                CarsDAO car=new CarsDAO(DBConnect.getConn());
-                List<Cars> list=car.getCars();
-                for(Cars c:list){%>
-                <tr>
-                <td><%=c.getNum_reg() %></td>
-                <td><%=c.getBrand() %></td>
-                <td><%=c.getModel() %></td>
-                <td><%=c.getStatus() %></td>
-                <td><%=c.getPrice() %></td>
-                <tr>
-                <%} %>
-                
-            </tbody>
-        </table>
-        
-        <!-- Add a new car form -->
-        <h2 class="mt-5">Add New Car:</h2>
-        <form action="add_car" method="post">
-            <div class="mb-3">
-                <label for="num_reg" class="form-label">Registration Number:</label>
-                <input type="text" class="form-control" name="num_reg">
-            </div>
-            <div class="mb-3">
-                <label for="brand" class="form-label">Brand:</label>
-                <input type="text" class="form-control"  name="brand">
-            </div>
-            <div class="mb-3">
-                <label for="model" class="form-label">Model:</label>
-                <input type="text" class="form-control" name="model">
-            </div>
-            <div class="mb-3">
-                <label for="status" class="form-label">Status:</label>
-                <input type="text" class="form-control"  name="status">
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Price:</label>
-                <input type="text" class="form-control" id="price" name="price">
-            </div>
-            <button type="submit" class="btn btn-primary">Add Car</button>
-        </form>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function populateForm(num_reg, brand, model, status, price) {
+                document.getElementById('num_reg').value = num_reg;
+                document.getElementById('brand').value = brand;
+                document.getElementById('model').value = model;
+                document.getElementById('status').value = status;
+                document.getElementById('price').value = price;
+                document.getElementById('is-update').value = "true";
+                document.getElementById('form-title').innerText = "Update Car:";
+                document.getElementById('submit-btn').innerText = "Update Car";
+            }
+        </script>
     </div>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

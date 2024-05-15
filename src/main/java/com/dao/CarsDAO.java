@@ -85,13 +85,14 @@ public class CarsDAO {
 	public boolean updateCar(Cars car) {
 		boolean success = false;
 		try {
-			String sql = "UPDATE carstbl SET num_reg = ?, brand = ?, model = ?, status = ?, price = ? WHERE id = ?";
+			String sql = "UPDATE carstbl SET num_reg = ?, brand = ?, model = ?, status = ?, price = ? WHERE num_reg = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, car.getNum_reg());
 			ps.setString(2, car.getBrand());
 			ps.setString(3, car.getModel());
 			ps.setString(4, car.getStatus());
 			ps.setDouble(5, car.getPrice());
+			ps.setString(6, car.getNum_reg());
 
 			int rowsAffected = ps.executeUpdate();
 			if (rowsAffected > 0) {
