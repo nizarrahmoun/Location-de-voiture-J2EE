@@ -53,7 +53,7 @@
         
         <!-- Add a new car form -->
         <h2 class="mt-5">Add New Car:</h2>
-        <form action="AjouCar" method="post">
+        <form action="add_car" method="post">
             <div class="mb-3">
                 <label for="num_reg" class="form-label">Registration Number:</label>
                 <input type="text" class="form-control" name="num_reg">

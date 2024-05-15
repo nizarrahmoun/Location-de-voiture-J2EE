@@ -1,4 +1,4 @@
-package com.cars.servlet;
+package com.Cars.servlet;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -12,8 +12,8 @@ import com.entity.Cars;
 
 import jakarta.servlet.annotation.WebServlet;
 
-@WebServlet("/AjouCar")
-public class AjouCar extends HttpServlet {
+@WebServlet("/add_car")
+public class AddNewCar extends HttpServlet {
 	
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
      <ul class="navbar-nav me-auto mb-2 mn-lg-0">
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/admin/index.jsp"><i class="fas fa-home"></i>HOME</a></li>
-     <li class="nav-item"><a class="nav-link active" href="/Car_rental/admin/cars.jsp">Voitures</a></li>
+     <li class="nav-item"><a class="nav-link active" href="/Car_rental/cars.jsp">Voitures</a></li>
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/Clients/clients.jsp">Cliens</a></li>
      <li class="nav-item"><a class="nav-link active" href="patient.jsp">Location</a></li>
      <li class="nav-item"><a class="nav-link active" href="patient.jsp">Retours</a></li>
