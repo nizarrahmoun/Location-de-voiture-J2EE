@@ -37,6 +37,7 @@ public class ClientsDAO {
 		return success;
 	}
 
+<<<<<<< HEAD
 	public int getTotalClientCount() throws SQLException {
 		int count = 0;
 		String query = "SELECT COUNT(*) FROM clientstbl";
@@ -49,6 +50,8 @@ public class ClientsDAO {
 		return count;
 	}
 
+=======
+>>>>>>> 7cdad6e9f6d19c82f20a33a4fd3d8b3899ee547d
 	public List<Clients> getClients() {
 		List<Clients> clientsList = new ArrayList<>();
 		try {

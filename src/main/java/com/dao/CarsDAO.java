@@ -10,7 +10,11 @@ import java.util.List;
 import com.entity.Cars;
 
 public class CarsDAO {
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 7cdad6e9f6d19c82f20a33a4fd3d8b3899ee547d
 	private static Connection conn;
 
 	public CarsDAO(Connection conn) {
@@ -38,6 +42,7 @@ public class CarsDAO {
 		}
 		return success;
 	}
+<<<<<<< HEAD
 
 	public Cars getCarByRegNum(String num_reg) {
 		Cars car = null;
@@ -59,6 +64,30 @@ public class CarsDAO {
 		}
 		return car;
 	}
+=======
+	
+	public Cars getCarByRegNum(String num_reg) {
+        Cars car = null;
+        try {
+            String sql = "SELECT * FROM carstbl WHERE num_reg = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, num_reg);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                car = new Cars();
+                car.setNum_reg(rs.getString("num_reg"));
+                car.setBrand(rs.getString("brand"));
+                car.setModel(rs.getString("model"));
+                car.setStatus(rs.getString("status"));
+                car.setPrice(rs.getDouble("price"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return car;
+    }
+
+>>>>>>> 7cdad6e9f6d19c82f20a33a4fd3d8b3899ee547d
 
 	public static List<Cars> getCars() {
 		List<Cars> carsList = new ArrayList<>();
@@ -80,7 +109,11 @@ public class CarsDAO {
 		}
 		return carsList;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 7cdad6e9f6d19c82f20a33a4fd3d8b3899ee547d
 	public static List<Cars> getCarsDisp() {
 		List<Cars> carsList = new ArrayList<>();
 		try {
@@ -102,6 +135,7 @@ public class CarsDAO {
 		return carsList;
 	}
 
+<<<<<<< HEAD
 	public int getTotalCarCount() throws SQLException {
 		int count = 0;
 		String query = "SELECT COUNT(*) FROM carstbl";
@@ -127,6 +161,8 @@ public class CarsDAO {
 		return count;
 	}
 
+=======
+>>>>>>> 7cdad6e9f6d19c82f20a33a4fd3d8b3899ee547d
 	public boolean updateCar(Cars car) {
 		boolean success = false;
 		try {
