@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/add_location")
-public class AddLocation extends HttpServlet {
+@WebServlet("/update_location")
+public class UpdateLocation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,14 +23,23 @@ public class AddLocation extends HttpServlet {
 			String endDate = request.getParameter("endDate");
 			String customerName = request.getParameter("customerName");
 			double rentFee = Double.parseDouble(request.getParameter("rentFee"));
+			boolean isUpdate = Boolean.parseBoolean(request.getParameter("isUpdate"));
 
 			Location location = new Location(numReg, startDate, endDate, customerName, rentFee);
 			LocationDAO locationDAO = new LocationDAO(DBConnect.getConn());
 
-			if (locationDAO.addLocation(location)) {
-				response.sendRedirect("location.jsp");
+			if (isUpdate) {
+				if (locationDAO.updateLocation(location)) {
+					response.sendRedirect("location.jsp");
+				} else {
+					response.getWriter().println("Error updating location");
+				}
 			} else {
-				response.getWriter().println("Error adding location");
+				if (locationDAO.addLocation(location)) {
+					response.sendRedirect("location.jsp");
+				} else {
+					response.getWriter().println("Error adding location");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

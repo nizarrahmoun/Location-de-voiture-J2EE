@@ -1,3 +1,6 @@
+<%@page import="com.dao.ClientsDAO"%>
+<%@page import="com.db.DBConnect"%>
+<%@page import="com.dao.CarsDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -30,13 +33,15 @@ box-shadow: 0 0 10px 0 rgba(0, 0, 0.3);
           <p class="text-center text-danger fs-3">${errorMsg}</p>
           <c:remove var="errorMsg" scope="session"/>
           </c:if>
+          <% CarsDAO dao = new CarsDAO(DBConnect.getConn()); %>
+          <% ClientsDAO daoc = new ClientsDAO(DBConnect.getConn()); %>
           <div class="row">
           <div class="col-md-4">
           <div class="card point-card">
-          <div class="card-body text-center text-success">
-          <i class="fas fa-user-md fa-3x"></i><br>
+          <div class="card-body text-center text-primary">
+          <i class="fas fa-car fa-3x"></i><br>
           <p class="fs-4 text-center">
-          Car <br>5
+          Voitures <br><%=dao.getTotalCarCount() %>
           </p>
           </div>
           </div>
@@ -44,10 +49,10 @@ box-shadow: 0 0 10px 0 rgba(0, 0, 0.3);
           
           <div class="col-md-4">
           <div class="card point-card">
-          <div class="card-body text-center text-success">
+          <div class="card-body text-center text-primary">
           <i class="fas fa-user-check fa-3x"></i><br>
           <p class="fs-4 text-center">
-          User <br>43
+          Clients <br><%=daoc.getTotalClientCount() %>
           </p>
           </div>
           </div>
@@ -55,10 +60,10 @@ box-shadow: 0 0 10px 0 rgba(0, 0, 0.3);
           
           <div class="col-md-4">
           <div class="card point-card">
-          <div class="card-body text-center text-success">
+          <div class="card-body text-center text-primary">
           <i class="far fa-calendar-check fa-3x"></i><br>
           <p class="fs-4 text-center">
-          Booking <br>453
+          Location <br><%=dao.getReservedCarCount() %>
           </p>
           </div>
           </div>
@@ -67,10 +72,10 @@ box-shadow: 0 0 10px 0 rgba(0, 0, 0.3);
           <div class="col-md-4 mt-2">
           <div class="card point-card" data-bs-toggle="modal"
           data-bs-target="#exampleModal">
-          <div class="card-body text-center text-success">
+          <div class="card-body text-center text-primary">
           <i class="far fa-calendar-check fa-3x"></i><br>
           <p class="fs-4 text-center">
-          Returns <br>34
+          Retours <br>3
           </p>
           </div>
           </div>

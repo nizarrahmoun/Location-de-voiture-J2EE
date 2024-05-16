@@ -93,5 +93,17 @@ public class ClientsDAO {
 		}
 		return success;
 	}
+	
+	public int getTotalClientCount() throws SQLException {
+		int count = 0;
+		String query = "SELECT COUNT(*) FROM clientstbl";
+		try (PreparedStatement statement = conn.prepareStatement(query);
+				ResultSet resultSet = statement.executeQuery()) {
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		}
+		return count;
+	}
 
 }

@@ -141,4 +141,29 @@ public class CarsDAO {
 		}
 		return success;
 	}
+	
+	public int getTotalCarCount() throws SQLException {
+		int count = 0;
+		String query = "SELECT COUNT(*) FROM carstbl";
+		try (PreparedStatement statement = conn.prepareStatement(query);
+				ResultSet resultSet = statement.executeQuery()) {
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		}
+		return count;
+	}
+
+	// Method to get reserved car count
+	public int getReservedCarCount() throws SQLException {
+		int count = 0;
+		String query = "SELECT COUNT(*) FROM carstbl WHERE status = 'Réservée'";
+		try (PreparedStatement statement = conn.prepareStatement(query);
+				ResultSet resultSet = statement.executeQuery()) {
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		}
+		return count;
+	}
 }

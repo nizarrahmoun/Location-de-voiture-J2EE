@@ -31,3 +31,10 @@ CREATE TABLE carrental_db.locationtbl (
   `returnFee` double NOT NULL,
   PRIMARY KEY (`num_reg`)
 )
+
+CREATE TABLE carrental_db.returntbl (
+  `num_reg` VARCHAR(45) NOT NULL,
+  `returnDate` VARCHAR(45) NOT NULL,
+  `retard` INT NOT NULL,
+  `amende` DOUBLE NOT NULL,
+  PRIMARY KEY (`num_reg`));

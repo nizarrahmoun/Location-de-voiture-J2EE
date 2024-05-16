@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.dao.LocationDAO;
 import com.db.DBConnect;
-import com.entity.Location;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,25 +11,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/add_location")
-public class AddLocation extends HttpServlet {
+@WebServlet("/delete_location")
+public class DeleteLocation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			String numReg = request.getParameter("carReg");
-			String startDate = request.getParameter("startDate");
-			String endDate = request.getParameter("endDate");
-			String customerName = request.getParameter("customerName");
-			double rentFee = Double.parseDouble(request.getParameter("rentFee"));
 
-			Location location = new Location(numReg, startDate, endDate, customerName, rentFee);
 			LocationDAO locationDAO = new LocationDAO(DBConnect.getConn());
+			boolean success = locationDAO.deleteLocation(numReg);
 
-			if (locationDAO.addLocation(location)) {
+			if (success) {
 				response.sendRedirect("location.jsp");
 			} else {
-				response.getWriter().println("Error adding location");
+				response.getWriter().println("Error deleting location");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

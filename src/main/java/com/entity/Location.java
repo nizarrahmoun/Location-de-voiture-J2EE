@@ -1,17 +1,14 @@
 package com.entity;
 
-import java.util.Date;
-
 public class Location {
-	private String num_reg;
+	private String numReg;
 	private String startDate;
 	private String endDate;
 	private String customerName;
 	private double rentFee;
 
-	public Location(String num_reg, String startDate, String endDate, String customerName, double rentFee) {
-		super();
-		this.num_reg = num_reg;
+	public Location(String numReg, String startDate, String endDate, String customerName, double rentFee) {
+		this.numReg = numReg;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.customerName = customerName;
@@ -22,11 +19,11 @@ public class Location {
 	}
 
 	public String getNumReg() {
-		return num_reg;
+		return numReg;
 	}
 
-	public void setNumReg(String num_reg) {
-		this.num_reg = num_reg;
+	public void setNumReg(String numReg) {
+		this.numReg = numReg;
 	}
 
 	public String getStartDate() {
@@ -53,11 +50,11 @@ public class Location {
 		this.customerName = customerName;
 	}
 
-	public double getReturnFee() {
+	public double getRentFee() {
 		return rentFee;
 	}
 
-	public void setReturnFee(double returnFee) {
-		this.rentFee = returnFee;
+	public void setRentFee(double rentFee) {
+		this.rentFee = rentFee;
 	}
 }
