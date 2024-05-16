@@ -26,12 +26,13 @@ public class update_car extends HttpServlet {
             String model = request.getParameter("model");
             String status = request.getParameter("status");
             double price = Double.parseDouble(request.getParameter("price"));
+            boolean isUpdate = Boolean.parseBoolean(request.getParameter("isUpdate"));
             
             // Create a Cars object with the updated details
             Cars car = new Cars(num_reg, brand, model, status, price);
             CarsDAO carDAO = new CarsDAO(DBConnect.getConn());
 
-            // Call the updateCar method in CarsDAO
+            if (isUpdate) {
             if (carDAO.updateCar(car)) {
                 // Car updated successfully, redirect to a confirmation page or list page
                 response.sendRedirect("cars.jsp");
@@ -39,6 +40,13 @@ public class update_car extends HttpServlet {
                 // Handle error, maybe show an error message to the user
                 // You can forward to an error page or display a message in the same page
                 response.getWriter().println("Error updating car");
+            }
+            }else {
+            	if (carDAO.addCar(car)) {
+					response.sendRedirect("cars.jsp");
+				} else {
+					response.getWriter().println("Error adding car");
+				}
             }
         } catch (Exception e) {
             e.printStackTrace();
