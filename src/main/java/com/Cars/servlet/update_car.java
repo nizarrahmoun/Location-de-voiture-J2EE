@@ -26,20 +26,13 @@ public class update_car extends HttpServlet {
             String model = request.getParameter("model");
             String status = request.getParameter("status");
             double price = Double.parseDouble(request.getParameter("price"));
-<<<<<<< HEAD
-=======
             boolean isUpdate = Boolean.parseBoolean(request.getParameter("isUpdate"));
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa
             
             // Create a Cars object with the updated details
             Cars car = new Cars(num_reg, brand, model, status, price);
             CarsDAO carDAO = new CarsDAO(DBConnect.getConn());
 
-<<<<<<< HEAD
-            // Call the updateCar method in CarsDAO
-=======
             if (isUpdate) {
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa
             if (carDAO.updateCar(car)) {
                 // Car updated successfully, redirect to a confirmation page or list page
                 response.sendRedirect("cars.jsp");
@@ -48,8 +41,6 @@ public class update_car extends HttpServlet {
                 // You can forward to an error page or display a message in the same page
                 response.getWriter().println("Error updating car");
             }
-<<<<<<< HEAD
-=======
             }else {
             	if (carDAO.addCar(car)) {
 					response.sendRedirect("cars.jsp");
@@ -57,13 +48,8 @@ public class update_car extends HttpServlet {
 					response.getWriter().println("Error adding car");
 				}
             }
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa

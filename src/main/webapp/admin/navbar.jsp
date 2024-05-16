@@ -14,15 +14,9 @@
      <ul class="navbar-nav me-auto mb-2 mn-lg-0">
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/admin/index.jsp"><i class="fas fa-home"></i>HOME</a></li>
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/cars.jsp">Voitures</a></li>
-<<<<<<< HEAD
-     <li class="nav-item"><a class="nav-link active" href="/Car_rental/clients.jsp">Clients</a></li>
-     <li class="nav-item"><a class="nav-link active" href="/Car_rental/location.jsp">Location</a></li>
-     <li class="nav-item"><a class="nav-link active" href="patient.jsp">Retours</a></li>
-=======
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/clients.jsp">Cliens</a></li>
-     <li class="nav-item"><a class="nav-link active" href="/Car_rental/rents.jsp">Location</a></li>
+     <li class="nav-item"><a class="nav-link active" href="/Car_rental/location.jsp">Location</a></li>
      <li class="nav-item"><a class="nav-link active" href="/Car_rental/returns.jsp">Retours</a></li>
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa
      
     </ul>
     

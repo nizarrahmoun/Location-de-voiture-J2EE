@@ -7,11 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Index Page</title>
-<<<<<<< HEAD
-<%@include file="component/allcss.jsp" %>
-=======
 <%@include file="component/allcss.jsp"%>
->>>>>>> 1d5f215118529e5845e1d038bdd03299a5aa77aa
 <style type="text/css">
 .point-card {
 box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
