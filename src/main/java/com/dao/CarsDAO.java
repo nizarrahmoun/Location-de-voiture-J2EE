@@ -81,6 +81,27 @@ public class CarsDAO {
 		}
 		return carsList;
 	}
+	
+	public static List<Cars> getCarsDisp() {
+		List<Cars> carsList = new ArrayList<>();
+		try {
+			String sql = "SELECT * FROM carstbl WHERE status = 'Disponible'";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Cars car = new Cars();
+				car.setNum_reg(rs.getString("num_reg"));
+				car.setBrand(rs.getString("brand"));
+				car.setModel(rs.getString("model"));
+				car.setStatus(rs.getString("status"));
+				car.setPrice(rs.getDouble("price"));
+				carsList.add(car);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return carsList;
+	}
 
 	public boolean updateCar(Cars car) {
 		boolean success = false;

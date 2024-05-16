@@ -1,3 +1,9 @@
+<%@page import="com.entity.Clients"%>
+<%@page import="com.dao.ClientsDAO"%>
+<%@page import="com.entity.Cars"%>
+<%@page import="java.util.List"%>
+<%@page import="com.db.DBConnect"%>
+<%@page import="com.dao.CarsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,8 +21,74 @@
 <div class="container">
     <h1 class="mt-5">Voitures disponibles pour location</h1>
 
-    
     <table class="table">
+                <thead>
+                    <tr>
+                        <th>Reg_num</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                    CarsDAO carDAO = new CarsDAO(DBConnect.getConn());
+                    List<Cars> list = carDAO.getCarsDisp();
+                    for (Cars c : list) { %>
+                    <tr>
+                        <td><%= c.getNum_reg() %></td>
+                        <td><%= c.getBrand() %></td>
+                        <td><%= c.getModel() %></td>
+                        <td><%= c.getStatus() %></td>
+                        <td><%= c.getPrice() %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+    
+
+    <h2 class="mt-5">Formulaire de location</h2>
+    <form action="add_location" method="post">
+        <div class="mb-3">
+            <label for="carReg" class="form-label">Matricule de la voiture:</label>
+            <select class="form-select" id="carReg" name="carReg" required>
+            		<%
+                    for (Cars c : list) { %>
+	                <option value="<%= c.getNum_reg() %>"><%= c.getNum_reg() %></option>
+	                <% } %>fac
+	        </select>
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Date de début de location:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="endDate" class="form-label">Date de fin de location:</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" required>
+        </div>
+        <div class="mb-3">
+	        <label for="customerName" class="form-label">Nom du client:</label>
+	        <select class="form-select" id="customerName" name="customerName" required>
+	            <%
+	            ClientsDAO clientsDAO = new ClientsDAO(DBConnect.getConn());
+                List<Clients> clientsList = clientsDAO.getClients();
+                for(Clients client : clientsList) {%>
+	                <option value="<%= client.getName() %>"><%= client.getName() %></option>
+	            <% } %>
+	        </select>
+	    </div>
+        <div class="mb-3">
+            <label for="rentFee" class="form-label">Frais se location:</label>
+            <input type="text" class="form-control" id="rentFee" name="rentFee" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Louer</button>
+    </form>
+
+
+<h1 class="mt-5">Voitures en location</h1>
+
+<table class="table">
         <thead>
         <tr>
             <th>Location ID</th>
@@ -41,33 +113,7 @@
         </c:forEach>
         </tbody>
     </table>
-
-    <h2 class="mt-5">Formulaire de location</h2>
-    <form action="completeLocation.jsp" method="post">
-        <div class="mb-3">
-            <label for="carReg" class="form-label">Matricule de la voiture:</label>
-            <input type="text" class="form-control" id="carReg" name="carReg" required>
-        </div>
-        <div class="mb-3">
-            <label for="startDate" class="form-label">Date de début de location:</label>
-            <input type="date" class="form-control" id="startDate" name="startDate" required>
-        </div>
-        <div class="mb-3">
-            <label for="endDate" class="form-label">Date de fin de location:</label>
-            <input type="date" class="form-control" id="endDate" name="endDate" required>
-        </div>
-        <div class="mb-3">
-            <label for="customerName" class="form-label">Nom du client:</label>
-            <input type="text" class="form-control" id="customerName" name="customerName" required>
-        </div>
-        <div class="mb-3">
-            <label for="customerName" class="form-label">Frais se retour:</label>
-            <input type="text" class="form-control" id="customerName" name="customerName" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Louer</button>
-    </form>
 </div>
-
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

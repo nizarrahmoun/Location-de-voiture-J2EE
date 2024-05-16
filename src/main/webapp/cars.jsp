@@ -75,9 +75,12 @@
                     <input type="text" class="form-control" name="model" id="model">
                 </div>
                 <div class="mb-3">
-                    <label for="status" class="form-label">Status:</label>
-                    <input type="text" class="form-control" name="status" id="status">
-                </div>
+				    <label for="status" class="form-label">Status:</label>
+				    <select class="form-select" name="status" id="status">
+				        <option value="Disponible">Disponible</option>
+				        <option value="Réservée">Réservée</option>
+				    </select>
+				</div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price:</label>
                     <input type="text" class="form-control" name="price" id="price">
